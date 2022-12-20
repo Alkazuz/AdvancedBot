@@ -1,0 +1,720 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B89A5F5-A0F7-4A65-9C22-7FFC1D4194DC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdvancedBot</RootNamespace>
+    <AssemblyName>AdvancedBot</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_NOLINK</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Jint, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Jint\bin\Release\Jint.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutNew.Designer.cs">
+      <DependentUpon>AboutNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BanCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BanCheck.Designer.cs">
+      <DependentUpon>BanCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Changelog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Changelog.Designer.cs">
+      <DependentUpon>Changelog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientSocket\AES.cs" />
+    <Compile Include="ClientSocket\Packets\UpdateHandler.cs" />
+    <Compile Include="ClientSocket\WebConnection.cs" />
+    <Compile Include="ClientSocket\WebEncryption.cs" />
+    <Compile Include="Client\AreaMiner.cs" />
+    <Compile Include="Client\AutoMiner.cs" />
+    <Compile Include="Client\Bypassing\ADRBypass.cs" />
+    <Compile Include="Client\Bypassing\AllBypass.cs" />
+    <Compile Include="Client\Bypassing\ColorBypass.cs" />
+    <Compile Include="Client\Bypassing\BypassBase.cs" />
+    <Compile Include="Client\Bypassing\DreamcraftBypass.cs" />
+    <Compile Include="Client\Bypassing\DreamcraftCaptchaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\Bypassing\DreamcraftCaptchaForm.designer.cs">
+      <DependentUpon>DreamcraftCaptchaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Bypassing\LandwarsBypass.cs" />
+    <Compile Include="Client\Bypassing\RedeSkyBypass.cs" />
+    <Compile Include="Client\Bypassing\RedeSlowBypass.cs" />
+    <Compile Include="Client\Bypassing\MasterCraftBypass.cs" />
+    <Compile Include="Client\Bypassing\OmegaMCBypass.cs" />
+    <Compile Include="Client\Bypassing\HealpBypass.cs" />
+    <Compile Include="Client\Bypassing\RedeUnionBypass.cs" />
+    <Compile Include="Client\Bypassing\SkySurvival.cs" />
+    <Compile Include="Client\Bypassing\TintaBypass.cs" />
+    <Compile Include="Client\Bypassing\WorldCraftBP.cs" />
+    <Compile Include="Client\Commands\CommandAreaMiner.cs" />
+    <Compile Include="Client\Commands\CommandCrashNew.cs" />
+    <Compile Include="Client\Commands\CommandCrash.cs" />
+    <Compile Include="Client\Commands\CommandProtetor .cs" />
+    <Compile Include="Client\Commands\CommandAntiAFK.cs" />
+    <Compile Include="Client\Commands\CommandBreakBlock.cs" />
+    <Compile Include="Client\Commands\CommandClearChat.cs" />
+    <Compile Include="Client\Commands\CommandClickBlock.cs" />
+    <Compile Include="Client\Commands\CommandDropAll.cs" />
+    <Compile Include="Client\Commands\CommandFollow.cs" />
+    <Compile Include="Client\Commands\CommandGive.cs" />
+    <Compile Include="Client\Commands\CommandGoto.cs" />
+    <Compile Include="Client\Commands\CommandHelp.cs" />
+    <Compile Include="Client\Commands\CommandHerbalism.cs" />
+    <Compile Include="Client\Commands\CommandHotbarClick.cs" />
+    <Compile Include="Client\Commands\CommandInvCaptcha.cs" />
+    <Compile Include="Client\Commands\CommandInvClick.cs" />
+    <Compile Include="Client\Commands\CommandKillAura.cs" />
+    <Compile Include="Client\CommandManagerNew.cs" />
+    <Compile Include="Client\Commands\CommandMiner.cs" />
+    <Compile Include="Client\Commands\CommandMove.cs" />
+    <Compile Include="Client\Commands\CommandPlaceBlock.cs" />
+    <Compile Include="Client\Commands\CommandPlayerList.cs" />
+    <Compile Include="Client\Commands\CommandPortal.cs" />
+    <Compile Include="Client\Commands\CommandProxy.cs" />
+    <Compile Include="Client\Commands\CommandReco.cs" />
+    <Compile Include="Client\Commands\CommandRetard.cs" />
+    <Compile Include="Client\Commands\CommandScript.cs" />
+    <Compile Include="Client\Commands\CommandTwerk.cs" />
+    <Compile Include="Client\Commands\CommandUseBow.cs" />
+    <Compile Include="Client\Commands\CommandUseEntity.cs" />
+    <Compile Include="Client\Commands\CommandBase.cs" />
+    <Compile Include="Client\DiggingHelper.cs" />
+    <Compile Include="Client\Handler\Handler_v1221.cs" />
+    <Compile Include="Client\Handler\Handler_v1222.cs" />
+    <Compile Include="Client\Handler\Handler_v152.cs" />
+    <Compile Include="Client\Handler\Handler_v19.cs" />
+    <Compile Include="Client\HttpConnection.cs" />
+    <Compile Include="Client\Map\LinearBlockGetter.cs" />
+    <EmbeddedResource Include="AboutNew.resx">
+      <DependentUpon>AboutNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Bypassing\DreamcraftCaptchaForm.resx">
+      <DependentUpon>DreamcraftCaptchaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginSettings.resx">
+      <DependentUpon>LoginSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\ViewForm.resx">
+      <DependentUpon>ViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Client\NBT\NBT.cs_" />
+    <Compile Include="Client\PacketLogger.cs" />
+    <Compile Include="Client\PacketStream.cs" />
+    <Compile Include="Client\LookInterpolator.cs" />
+    <Compile Include="Client\PacketStream.ns.cs" />
+    <Compile Include="Client\Packets\PacketTeleportConfirm.cs" />
+    <Compile Include="Client\Packets\PacketUseItem.cs" />
+    <Compile Include="Client\ReadBuffer.cs" />
+    <Compile Include="Client\SocketExtensions.cs" />
+    <Compile Include="Client\WriteBuffer.cs" />
+    <Compile Include="Client\Packets\PacketEncryptionResponse.cs" />
+    <Compile Include="Client\NBT\ByteArrayTag.cs" />
+    <Compile Include="Client\NBT\ByteTag.cs" />
+    <Compile Include="Client\NBT\CompoundTag.cs" />
+    <Compile Include="Client\NBT\DataInput.cs" />
+    <Compile Include="Client\NBT\DataOutput.cs" />
+    <Compile Include="Client\NBT\DoubleTag.cs" />
+    <Compile Include="Client\NBT\EndTag.cs" />
+    <Compile Include="Client\NBT\FloatTag.cs" />
+    <Compile Include="Client\NBT\IntArrayTag.cs" />
+    <Compile Include="Client\NBT\IntTag.cs" />
+    <Compile Include="Client\NBT\ListTag.cs" />
+    <Compile Include="Client\NBT\LongTag.cs" />
+    <Compile Include="Client\NBT\NbtIO.cs" />
+    <Compile Include="Client\NBT\ShortTag.cs" />
+    <Compile Include="Client\NBT\StringTag.cs" />
+    <Compile Include="Client\NBT\Tag.cs" />
+    <Compile Include="Client\Packets\PacketCloseWindow.cs" />
+    <Compile Include="Client\Packets\PacketClickWindow.cs" />
+    <Compile Include="Client\Packets\PacketConfirmTransaction.cs" />
+    <Compile Include="Client\Packets\PacketCreativeInvAction.cs" />
+    <Compile Include="Client\Packets\PacketClientSettings.cs" />
+    <Compile Include="Client\Packets\PacketPluginMessage.cs" />
+    <Compile Include="Client\Handler\Handler_v17.cs" />
+    <Compile Include="Client\Handler\Handler_v18.cs" />
+    <Compile Include="Client\Handler\ProtocolHandler.cs" />
+    <Compile Include="Client\UUID.cs" />
+    <Compile Include="Controls\CountryListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FilterCountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterCountryForm.Designer.cs">
+      <DependentUpon>FilterCountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginSettings.designer.cs">
+      <DependentUpon>LoginSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Movement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Movement.Designer.cs">
+      <DependentUpon>Movement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HWID.cs" />
+    <Compile Include="Json\ChatDeserializer.cs" />
+    <Compile Include="Json\ChatMessage.cs" />
+    <Compile Include="Json\ClickEvent.cs" />
+    <Compile Include="Json\HoverEvent.cs" />
+    <Compile Include="Json\Node.cs" />
+    <Compile Include="Json\Value.cs" />
+    <Compile Include="Json\With.cs" />
+    <Compile Include="MacroEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MacroEditor.Designer.cs">
+      <DependentUpon>MacroEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaxMindDB\BigInteger.cs" />
+    <Compile Include="MaxMindDB\BigIntegerJsonConverter.cs" />
+    <Compile Include="MaxMindDB\Decoder.cs" />
+    <Compile Include="MaxMindDB\InvalidDatabaseException.cs" />
+    <Compile Include="MaxMindDB\MaxMindDbReader.cs" />
+    <Compile Include="MaxMindDB\Metadata.cs" />
+    <Compile Include="MinerOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MinerOptions.Designer.cs">
+      <DependentUpon>MinerOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PingButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Plugins\AdvancedBotAPI.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Protetor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Protetor.Designer.cs">
+      <DependentUpon>Protetor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProxyChecker\ProxyCheckQueue.cs" />
+    <Compile Include="ProxyChecker\ProxyInfo.cs" />
+    <Compile Include="ProxyChecker\ProxyUtils.cs" />
+    <Compile Include="Controls\ProxyListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ranking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ranking.Designer.cs">
+      <DependentUpon>Ranking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RtfBuilder.cs" />
+    <Compile Include="Script\FastColoredTextBox\AutocompleteItem.cs" />
+    <Compile Include="Script\FastColoredTextBox\AutocompleteMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\Bookmarks.cs" />
+    <Compile Include="Script\FastColoredTextBox\Char.cs" />
+    <Compile Include="Script\FastColoredTextBox\CommandManager.cs" />
+    <Compile Include="Script\FastColoredTextBox\Commands.cs" />
+    <Compile Include="Script\FastColoredTextBox\DocumentMap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\EncodingDetector.cs" />
+    <Compile Include="Script\FastColoredTextBox\ExportToHTML.cs" />
+    <Compile Include="Script\FastColoredTextBox\ExportToRTF.cs" />
+    <Compile Include="Script\FastColoredTextBox\FastColoredTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\FileTextSource.cs" />
+    <Compile Include="Script\FastColoredTextBox\FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\FindForm.Designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\GoToForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\GoToForm.Designer.cs">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\Hints.cs" />
+    <Compile Include="Script\FastColoredTextBox\Hotkeys.cs" />
+    <Compile Include="Script\FastColoredTextBox\HotkeysEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\HotkeysEditorForm.Designer.cs">
+      <DependentUpon>HotkeysEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\LimitedStack.cs" />
+    <Compile Include="Script\FastColoredTextBox\Line.cs" />
+    <Compile Include="Script\FastColoredTextBox\LinesAccessor.cs" />
+    <Compile Include="Script\FastColoredTextBox\MacrosManager.cs" />
+    <Compile Include="Script\FastColoredTextBox\Place.cs" />
+    <Compile Include="Script\FastColoredTextBox\PlatformType.cs" />
+    <Compile Include="Script\FastColoredTextBox\Range.cs" />
+    <Compile Include="Script\FastColoredTextBox\ReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\ReplaceForm.Designer.cs">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\Ruler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\Ruler.Designer.cs">
+      <DependentUpon>Ruler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\Style.cs" />
+    <Compile Include="Script\FastColoredTextBox\SyntaxDescriptor.cs" />
+    <Compile Include="Script\FastColoredTextBox\SyntaxHighlighter.cs" />
+    <Compile Include="Script\FastColoredTextBox\TextSource.cs" />
+    <Compile Include="Script\FastColoredTextBox\TypeDescriptor.cs" />
+    <Compile Include="Script\FastColoredTextBox\UnfocusablePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Script\FastColoredTextBox\VisualMarker.cs" />
+    <Compile Include="Script\IScriptContext.cs" />
+    <Compile Include="Script\JsScriptBindings.cs" />
+    <Compile Include="Script\JsScriptContext.cs" />
+    <Compile Include="Script\JsResolver.cs" />
+    <Compile Include="Script\ScriptContext.cs" />
+    <Compile Include="SetPrefixForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetPrefixForm.Designer.cs">
+      <DependentUpon>SetPrefixForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SrvResolver.cs" />
+    <Compile Include="AccountChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountChecker.Designer.cs">
+      <DependentUpon>AccountChecker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SurroundingClass.cs" />
+    <Compile Include="TestServer.cs" />
+    <Compile Include="Controls\UserListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Client\AABB.cs" />
+    <Compile Include="Client\Blocks.cs" />
+    <Compile Include="Client\ChatParser.cs" />
+    <Compile Include="Client\Crypto\AesStream.cs" />
+    <Compile Include="Client\Crypto\CryptoUtils.cs" />
+    <Compile Include="Client\Entity.cs" />
+    <Compile Include="Client\Inventory.cs" />
+    <Compile Include="Client\IPacket.cs" />
+    <Compile Include="Client\ItemStack.cs" />
+    <Compile Include="Client\LoginResponse.cs" />
+    <Compile Include="Client\Map\BlockUtils.cs" />
+    <Compile Include="Client\Map\Chunk.cs" />
+    <Compile Include="Client\Map\World.cs" />
+    <Compile Include="Client\MinecraftClient.cs" />
+    <Compile Include="Client\MinecraftStream.cs" />
+    <Compile Include="Client\Packets\PacketHandshake.cs" />
+    <Compile Include="Client\Packets\PacketKeepAlive.cs" />
+    <Compile Include="Client\Packets\PacketLoginStart.cs" />
+    <Compile Include="Client\Packets\PacketChatMessage.cs" />
+    <Compile Include="Client\Packets\PacketUseEntity.cs" />
+    <Compile Include="Client\Packets\PacketUpdate.cs" />
+    <Compile Include="Client\Packets\PacketPlayerPos.cs" />
+    <Compile Include="Client\Packets\PacketPlayerLook.cs" />
+    <Compile Include="Client\Packets\PacketPosAndLook.cs" />
+    <Compile Include="Client\Packets\PacketPlayerDigging.cs" />
+    <Compile Include="Client\Packets\PacketBlockPlace.cs" />
+    <Compile Include="Client\Packets\PacketHeldItemChange.cs" />
+    <Compile Include="Client\Packets\PacketSwingArm.cs" />
+    <Compile Include="Client\Packets\PacketEntityAction.cs" />
+    <Compile Include="Client\Packets\PacketClientStatus.cs" />
+    <Compile Include="Client\PathFinding\Path.cs" />
+    <Compile Include="Client\PathFinding\PathFinder.cs" />
+    <Compile Include="Client\PathFinding\PathGuide.cs" />
+    <Compile Include="Client\PathFinding\PathPoint.cs" />
+    <Compile Include="Client\PlayerManager.cs" />
+    <Compile Include="Client\SessionCache.cs" />
+    <Compile Include="Client\Utils.cs" />
+    <Compile Include="Client\SessionUtils.cs" />
+    <Compile Include="Client\Vec3d.cs" />
+    <Compile Include="Client\Vec3i.cs" />
+    <Compile Include="Statistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statistics.Designer.cs">
+      <DependentUpon>Statistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NickGenerator.cs" />
+    <Compile Include="Controls\PercentageProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Client\Proxy.cs" />
+    <Compile Include="ProxyCheckerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProxyCheckerForm.Designer.cs">
+      <DependentUpon>ProxyCheckerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProxyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProxyForm.Designer.cs">
+      <DependentUpon>ProxyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProxyList.cs" />
+    <Compile Include="Spammer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Spammer.Designer.cs">
+      <DependentUpon>Spammer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Start.Designer.cs">
+      <DependentUpon>Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Items.cs" />
+    <Compile Include="Translation.cs" />
+    <Compile Include="Viewer\Character\Cube.cs" />
+    <Compile Include="Viewer\Character\PlayerChar.cs" />
+    <Compile Include="Viewer\Character\Polygon.cs" />
+    <Compile Include="Viewer\Character\Vertex.cs" />
+    <Compile Include="Viewer\ChunkRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Viewer\Font.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Viewer\Frustum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Viewer\GL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Viewer\Gui\GuiBase.cs" />
+    <Compile Include="Viewer\Gui\GuiButton.cs" />
+    <Compile Include="Viewer\Gui\GuiChatInput.cs" />
+    <Compile Include="Viewer\Gui\GuiCheckBox.cs" />
+    <Compile Include="Viewer\Gui\GuiControl.cs" />
+    <Compile Include="Viewer\Gui\GuiInventory.cs" />
+    <Compile Include="Viewer\Gui\GuiOptions.cs" />
+    <Compile Include="Viewer\Gui\GuiTrackBar.cs" />
+    <Compile Include="Viewer\Gui\GuiUtils.cs" />
+    <Compile Include="Viewer\Gui\ItemRenderer\BannerRenderer.cs" />
+    <Compile Include="Viewer\Gui\ItemRenderer\FastBitmap.cs" />
+    <Compile Include="Viewer\Gui\ItemRenderer\ItemRendererBase.cs" />
+    <Compile Include="Viewer\Gui\ItemRenderer\SkullRenderer.cs" />
+    <Compile Include="Viewer\InputHelper.cs" />
+    <Compile Include="Viewer\Model\Direction.cs" />
+    <Compile Include="Viewer\Model\ModelFactory.cs" />
+    <Compile Include="Viewer\Model\ModelRenderer.cs" />
+    <Compile Include="Viewer\Model\ModelTextureManager.cs" />
+    <Compile Include="Viewer\Tessellator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Viewer\TextureManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Viewer\VBO.cs" />
+    <Compile Include="Viewer\ViewerConfig.cs" />
+    <Compile Include="Viewer\ViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\ViewForm.Designer.cs">
+      <DependentUpon>ViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\WGL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Viewer\WorldRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Zlib\CRC32.cs" />
+    <Compile Include="Zlib\Deflate.cs" />
+    <Compile Include="Zlib\DeflateStream.cs" />
+    <Compile Include="Zlib\GZipStream.cs" />
+    <Compile Include="Zlib\Inflate.cs" />
+    <Compile Include="Zlib\InfTree.cs" />
+    <Compile Include="Zlib\ParallelDeflateOutputStream.cs" />
+    <Compile Include="Zlib\Tree.cs" />
+    <Compile Include="Zlib\Zlib.cs" />
+    <Compile Include="Zlib\ZlibBaseStream.cs" />
+    <Compile Include="Zlib\ZlibCodec.cs" />
+    <Compile Include="Zlib\ZlibConstants.cs" />
+    <Compile Include="Zlib\ZlibStream.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BanCheck.resx">
+      <DependentUpon>BanCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Changelog.resx">
+      <DependentUpon>Changelog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterCountryForm.resx">
+      <DependentUpon>FilterCountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Movement.resx">
+      <DependentUpon>Movement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MacroEditor.resx">
+      <DependentUpon>MacroEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MinerOptions.resx">
+      <DependentUpon>MinerOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Protetor.resx">
+      <DependentUpon>Protetor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FastColoredTextBox\FastColoredTextBox.resx">
+      <DependentUpon>FastColoredTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FastColoredTextBox\FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FastColoredTextBox\GoToForm.resx">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FastColoredTextBox\HotkeysEditorForm.resx">
+      <DependentUpon>HotkeysEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FastColoredTextBox\ReplaceForm.resx">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetPrefixForm.resx">
+      <DependentUpon>SetPrefixForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistics.resx">
+      <DependentUpon>Statistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProxyCheckerForm.resx">
+      <DependentUpon>ProxyCheckerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProxyForm.resx">
+      <DependentUpon>ProxyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ranking.resx">
+      <DependentUpon>Ranking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Spammer.resx">
+      <DependentUpon>Spammer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Start.resx">
+      <DependentUpon>Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountChecker.resx">
+      <DependentUpon>AccountChecker.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\BannerPatterns.zip" />
+    <None Include="Resources\flags.csv" />
+    <None Include="Resources\itemmap.csv.zlib" />
+    <None Include="Resources\item_blocks_textures.csv" />
+    <None Include="Resources\portals.json" />
+    <None Include="Resources\recipes.json" />
+    <None Include="Resources\states.json" />
+    <None Include="Resources\states.zlib" />
+    <None Include="Resources\texturemap.csv.zlib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <None Include="Resources\flags.png" />
+    <None Include="Resources\discord.png" />
+    <None Include="Resources\changelog.png" />
+    <None Include="Resources\about.png" />
+    <None Include="Resources\discord1.png" />
+    <Content Include="Resources\logo.png" />
+    <None Include="Resources\steve.png" />
+    <Content Include="Zlib\LICENSE.jzlib.txt" />
+    <Content Include="Zlib\License.zlib.txt" />
+    <None Include="Resources\inv_slots.png" />
+    <None Include="Resources\item_blocks.png" />
+    <None Include="Resources\debug_textures_items.png" />
+    <None Include="Resources\debug_textures_blocks.png" />
+    <None Include="Resources\ascii.png" />
+    <None Include="Resources\folder-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>if /I "$(ConfigurationName)" == "Release" Eazfuscator.NET.exe "$(TargetPath)" --msbuild-project-path "$(ProjectPath)" --msbuild-project-configuration "$(ConfigurationName)" --msbuild-project-platform "$(PlatformName)" --msbuild-solution-path "$(SolutionPath)" -n --newline-flush -v 2018.3</PostBuildEvent>
+  </PropertyGroup>
+</Project>

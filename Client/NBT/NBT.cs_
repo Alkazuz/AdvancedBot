@@ -1,0 +1,414 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Ionic.Zlib;
+
+namespace AdvancedBot.client.NBT2
+{
+    public abstract class Tag
+    {
+        public abstract TagType Type { get; }
+
+        public static Tag Read(TagType type, NBT.DataInput din)
+        {
+            switch (type) {
+                case TagType.Byte:      return new TagPrimitive<byte>(din.ReadByte());
+                case TagType.Short:     return new TagPrimitive<short>(din.ReadShort());
+                case TagType.Int:       return new TagPrimitive<int>(din.ReadInt());
+                case TagType.Long:      return new TagPrimitive<long>(din.ReadLong());
+                case TagType.Float:     return new TagPrimitive<float>(din.ReadFloat());
+                case TagType.Double:    return new TagPrimitive<double>(din.ReadDouble());
+                case TagType.ByteArray: return new TagPrimitive<byte[]>(din.ReadByteArray(din.ReadInt()));
+                case TagType.String:    return new TagPrimitive<string>(din.ReadUTF());
+                case TagType.List: {
+                        TagType tagType = (TagType)din.ReadByte();
+                        int count = din.ReadInt();
+
+                        TagList list = new TagList(count);
+                        for (int i = 0; i < count; i++)
+                            list.Add(Read(tagType, din));
+                        return list;
+                    }
+                case TagType.Compound: {
+                        TagCompound tag = new TagCompound();
+                        for (TagType tagType; (tagType = (TagType)din.ReadByte()) != TagType.End; )
+                            tag[din.ReadUTF()] = Read(tagType, din);
+                        return tag;
+                    }
+                case TagType.IntArray:
+                    int[] iarr = new int[din.ReadInt()];
+                    for (int i = 0; i < iarr.Length; i++)
+                        iarr[i] = din.ReadInt();
+                    return new TagPrimitive<int[]>(iarr);
+                default: throw new ArgumentException($"Unknown tag type: {type}");
+            }
+        }
+        public static void Write(Tag tag, NBT.DataOutput dout)
+        {
+            switch (tag.Type) {
+                case TagType.Byte:   dout.WriteByte(((TagPrimitive<byte>)tag).Value); break;
+                case TagType.Short:  dout.WriteShort(((TagPrimitive<short>)tag).Value); break;
+                case TagType.Int:    dout.WriteInt(((TagPrimitive<int>)tag).Value); break;
+                case TagType.Long:   dout.WriteLong(((TagPrimitive<long>)tag).Value); break;
+                case TagType.Float:  dout.WriteFloat(((TagPrimitive<float>)tag).Value); break;
+                case TagType.Double: dout.WriteDouble(((TagPrimitive<double>)tag).Value); break;
+                case TagType.ByteArray:
+                    byte[] bytes = ((TagPrimitive<byte[]>)tag).Value;
+                    dout.WriteInt(bytes.Length);
+                    dout.WriteByteArray(bytes);
+                    break;
+                case TagType.String: dout.WriteUTF(((TagPrimitive<string>)tag).Value); break;
+                case TagType.List:
+                    var list = (TagList)tag;
+                    dout.WriteByte((byte)list.ElementType);
+                    dout.WriteInt(list.Count);
+                    foreach(Tag entry in list) {
+                        Write(entry, dout);
+                    }
+                    break;
+                case TagType.Compound:
+                    foreach(KeyValuePair<string, Tag> entry in (TagCompound)tag) {
+                        dout.WriteByte((byte)entry.Value.Type);
+                        dout.WriteUTF(entry.Key);
+                        Write(entry.Value, dout);
+                    }
+                    dout.WriteByte((byte)TagType.End);
+                    break;
+                case TagType.IntArray:
+                    int[] iarr = ((TagPrimitive<int[]>)tag).Value;;
+                    dout.WriteInt(iarr.Length);
+                    for (int i = 0; i < iarr.Length; i++)
+                        dout.WriteInt(iarr[i]);
+                    break;
+            }
+        }
+
+        public static string PrettyPrint(TagCompound tag)
+        {
+            var pp = new NbtPrettyPrinter();
+            pp.Print(tag);
+            return pp.ToString();
+        }
+
+        public static bool IsPrimitive<T>()
+        {
+            return TagPrimitive<byte>.TypeMap.ContainsKey(typeof(T));
+        }
+
+        private class NbtPrettyPrinter
+        {
+            private StringBuilder sb = new StringBuilder();
+            private int tabLevel = 0;
+
+            private void Append(string name, string content)
+            {
+                AddTabs();
+                sb.AppendFormat("{0}{1}\n", name, content);
+            }
+            private void Begin(string name)
+            {
+                AddTabs();
+                sb.Append(name + " {\n");
+                tabLevel++;
+            }
+            private void End()
+            {
+                tabLevel--;
+                AddTabs();
+                sb.Append("}\n");
+            }
+            private void AddTabs()
+            {
+                sb.Append(' ', tabLevel * 4);
+            }
+
+            public void Print(Tag tag, string name = null)
+            {
+                switch (tag.Type) {
+                    case TagType.Byte:
+                    case TagType.Short:
+                    case TagType.Int:
+                    case TagType.Long:
+                    case TagType.Float:
+                    case TagType.Double:
+                        Append($"{tag.Type}('{name}'): ", tag.GetType().GetField("Value").GetValue(tag).ToString());
+                        break;
+                    case TagType.ByteArray:
+                        var barr = ((TagPrimitive<byte[]>)tag).Value;
+                        Append($"ByteArray[{barr.Length}]('{name}'): ", string.Join(", ", barr));
+                        break;
+                    case TagType.String:
+                        Append($"String('{name}'): ", "\"" + ((TagPrimitive<string>)tag).Value + "\"");
+                        break;
+                    case TagType.List:
+                        var list = (TagList)tag;
+                        Begin($"List<{list.ElementType}>('{name}'):");
+                        for(int i = 0; i < list.Count; i++) {
+                            Print(list[i]);
+                        }
+                        End();
+                        break;
+                    case TagType.Compound:
+                        var comp = (TagCompound)tag;
+                        Begin($"Compound('{name}'):");
+                        foreach(var kv in comp) {
+                            Print(kv.Value, kv.Key);
+                        }
+                        End();
+                        break;
+                    case TagType.IntArray:
+                        var iarr = ((TagPrimitive<int[]>)tag).Value;
+                        Append($"IntArray[{iarr.Length}]('{name}'): ", string.Join(", ", iarr));
+                        break;
+                }
+            }
+
+            public override string ToString()
+            {
+                return sb.ToString();
+            }
+        }
+    }
+    public class TagCompound : Tag, IEnumerable<KeyValuePair<string, Tag>>
+    {
+        private Dictionary<string, Tag> tags = new Dictionary<string, Tag>();
+
+        public override TagType Type => TagType.Compound;
+
+        public int Count => tags.Count;
+        public Tag this[string name]
+        {
+            set { tags[name] = value; }
+            get { return tags.TryGetValue(name, out Tag tag) ? tag : null; }
+        }
+
+        public bool Contains(string key) => tags.ContainsKey(key);
+
+        public byte GetByte(string name) => GetPrimitive<byte>(name);
+        public short GetShort(string name) => GetPrimitive<short>(name);
+        public int GetInt(string name) => GetPrimitive<int>(name);
+        public long GetLong(string name) => GetPrimitive<long>(name);
+        public float GetFloat(string name) => GetPrimitive<float>(name);
+        public double GetDouble(string name) => GetPrimitive<double>(name);
+        public byte[] GetByteArray(string name) => GetPrimitive<byte[]>(name);
+        public string GetString(string name) => GetPrimitive<string>(name);
+        public TagList GetList(string name, bool returnNull = false)
+        {
+            if (tags.TryGetValue(name, out Tag tag) && tag is TagList tl) {
+                return tl;
+            }
+            return returnNull ? null : new TagList();
+        }
+        public TagCompound GetCompound(string name, bool returnNull = false)
+        {
+            if(tags.TryGetValue(name, out Tag tag) && tag is TagCompound tc) {
+                return tc;
+            }
+            return returnNull ? null : new TagCompound();
+        }
+        public int[] GetIntArray(string name) => GetPrimitive<int[]>(name);
+        public bool GetBool(string name) => GetPrimitive<byte>(name) != 0;
+
+        public void SetByte(string name, byte value) => SetPrimitive(name, value);
+        public void SetShort(string name, short value) => SetPrimitive(name, value);
+        public void SetInt(string name, int value) => SetPrimitive(name, value);
+        public void SetLong(string name, long value) => SetPrimitive(name, value);
+        public void SetFloat(string name, float value) => SetPrimitive(name, value);
+        public void SetDouble(string name, double value) => SetPrimitive(name, value);
+        public void SetByteArray(string name, byte[] value) => SetPrimitive(name, value);
+        public void SetString(string name, string value) => SetPrimitive(name, value);
+        public void SetList(string name, TagList value) => tags[name] = value;
+        public void SetCompound(string name, TagCompound value) => tags[name] = value;
+        public void SetIntArray(string name, int[] value) => SetPrimitive(name, value);
+        public void SetBool(string name, bool value) => SetPrimitive(name, (byte)(value ? 1 : 0));
+
+        public T GetPrimitive<T>(string name)
+        {
+            if(tags.TryGetValue(name, out Tag tag) && tag is TagPrimitive<T> th) {
+                return th.Value;
+            }
+            return default;
+        }
+        public void SetPrimitive<T>(string name, T value)
+        {
+            tags[name] = new TagPrimitive<T>(value);
+        }
+
+        public IEnumerator<KeyValuePair<string, Tag>> GetEnumerator()
+        {
+            return tags.GetEnumerator();
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
+    public class TagList : Tag, IEnumerable<Tag>
+    {
+        private List<Tag> tags;
+        public TagType ElementType { get; private set; } = TagType.End;
+        public override TagType Type => TagType.List;
+
+        public TagList() { tags = new List<Tag>(); }
+        public TagList(int capacity) { tags = new List<Tag>(capacity); }
+
+        public int Count { get { return tags.Count; } }
+        public Tag this[int index]
+        {
+            get { return tags[index]; }
+            set {
+                if(ElementType == TagType.End) {
+                    ElementType = value.Type;
+                } else if(value.Type != ElementType) {
+                    throw new ArgumentException("Invalid element type");
+                }
+                tags[index] = value;
+            }
+        }
+        public void Add(Tag value)
+        {
+            if (ElementType == TagType.End) {
+                ElementType = value.Type;
+            } else if (value.Type != ElementType) {
+                throw new ArgumentException("Invalid element type");
+            }
+            tags.Add(value);
+        }
+
+        public IEnumerator<Tag> GetEnumerator()
+        {
+            return tags.GetEnumerator();
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return tags.GetEnumerator();
+        }
+
+        public static explicit operator List<Tag>(TagList tl)
+        {
+            return new List<Tag>(tl.tags);
+        }
+        public static explicit operator TagList(List<Tag> lt)
+        {
+            var tl = new TagList(lt.Count);
+            for (int i = 0; i < lt.Count; i++) {
+                tl[i] = lt[i];
+            }
+            return tl;
+        }
+    }
+    public class TagPrimitive<T> : Tag
+    {
+        public static readonly Dictionary<Type, TagType> TypeMap = new Dictionary<Type, TagType>() {
+            { typeof(byte),        TagType.Byte      },
+            { typeof(short),       TagType.Short     },
+            { typeof(int),         TagType.Int       },
+            { typeof(long),        TagType.Long      },
+            { typeof(float),       TagType.Float     },
+            { typeof(double),      TagType.Double    },
+            { typeof(byte[]),      TagType.ByteArray },
+            { typeof(string),      TagType.String    },
+            { typeof(int[]),       TagType.IntArray  }
+        };
+        private TagType _type;
+        public override TagType Type { get { return _type; } }
+
+        public T Value;
+        public TagPrimitive(T value)
+        {
+            Value = value;
+            _type = TypeMap[typeof(T)];
+        }
+    }
+
+    public enum TagType : byte
+    {
+        End       = 0,
+        Byte      = 1,
+        Short     = 2,
+        Int       = 3,
+        Long      = 4,
+        Float     = 5,
+        Double    = 6,
+        ByteArray = 7,
+        String    = 8,
+        List      = 9,
+        Compound  = 10,
+        IntArray  = 11
+    }
+
+    public class NbtIO
+    {
+        public static TagCompound ReadCompressed(Stream input)
+        {
+            using (var dis = new NBT.DataInput(new GZipStream(input, CompressionMode.Decompress, true))) {
+                return Read(dis);
+            }
+        }
+        public static void WriteCompressed(TagCompound tag, Stream output)
+        {
+            using(var dos = new NBT.DataOutput(new GZipStream(output, CompressionMode.Compress, true))) {
+                Write(tag, dos);
+            }
+        }
+
+        public static TagCompound Decompress(byte[] buffer)
+        {
+            using (var dis = new NBT.DataInput(GZipStream.UncompressBuffer(buffer))) {
+                return Read(dis);
+            }
+        }
+        public static byte[] Compress(TagCompound tag)
+        {
+            using (var mem = new MemoryStream()) {
+                using (var dos = new NBT.DataOutput(new GZipStream(mem, CompressionMode.Compress, true))) {
+                    Write(tag, dos);
+                    return mem.ToArray();
+                }
+            }
+        }
+
+        public static void Write(TagCompound tag, string file)
+        {
+            using (var dos = new NBT.DataOutput(new FileStream(file, FileMode.Create, FileAccess.Write))) {
+                Write(tag, dos);
+            }
+        }
+        public static TagCompound Read(string file)
+        {
+            using (var dis = new NBT.DataInput(new FileStream(file, FileMode.Open, FileAccess.Read))) {
+                return Read(dis);
+            }
+        }
+
+        private static TagCompound Read(NBT.DataInput dis)
+        {
+            byte type = dis.ReadByte();
+            string name = dis.ReadUTF();
+            
+            if (Tag.Read((TagType)type, dis) is TagCompound tag) {
+                return tag;
+            }
+            throw new IOException("Root tag must be a named compound tag");
+        }
+        private static void Write(TagCompound tag, NBT.DataOutput dos)
+        {
+            dos.WriteByte((byte)tag.Type);
+            dos.WriteUTF("");
+            Tag.Write(tag, dos);
+        }
+    }
+    public class Test
+    {
+        public static void Run()
+        {
+            var nbt = NbtIO.ReadCompressed(new MemoryStream(File.ReadAllBytes(@"C:\Users\Daniel\Desktop\Arquivos\Server\1.8 n spigot\world\level.dat")));
+            Debug.WriteLine(Tag.PrettyPrint(nbt));
+        }
+    }
+}

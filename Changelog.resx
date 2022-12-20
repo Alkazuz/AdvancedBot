@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Versão 2.5.8
+ - Adicionado bypass para o servidor landwars.com.br, '$captcha landwars'
+ - Adicionado comando '$crash'
+ - Resolvido hitbox nas entidades
+ - Adicionado '$captcha *', para tentar detectar o item para ser clicado em todos os servidores
+
+Versão 2.5.7.2
+ - Resolvido problema do programa crashar ao utilizar o comando '$captcha'
+
+Versão 2.5.7
+ - Atualizado bypass para o captcha do plugin TintaAntiBotV2, '$invcaptcha tintaantibot'
+ - Adicionado delay para registrar/logar para evitar problemas em alguns servidores
+ - Adicionado bypass no captcha ao aceitar party no RedeSky, '$captcha partyredesky'
+ - Resolvido o problema do About não abrir
+ - Adicionado bypass para o servidor redeslow.com, '$captcha redeslow'
+ - Corrigido o bypass do captcha de clicar em cores em alguns servidores
+
+Versão 2.5.6
+ - Adicionado número de usuários utilizando o bot em tempo real
+ - Adicionado música na tela de About
+ - Atualizado bypass no servidor play.mcdreamcraft.com.br
+ - Atualizado bypass para o servidor skyminigames.com
+ - Adicionado bypass para o servidor jogar.mc-mastercraft.net, '$captcha mastercraft'
+
+Versão 2.5.5
+ - Atualizado bypass para o servidor jogar.rede-union.com
+
+Versão 2.5.4.1
+ - Resolvido problema do Viewer em alguns computadores
+
+Versão 2.5.3
+ - Adicionado bypass para o captcha do plugin TintaAntiBotV2, '$invcaptcha tintaantibot'
+ - Adicionado bypass para o servidor jogar.rede-union.com
+ - Adicionado bypass para o servidor jogar.redemania.tk
+
+Versão 2.5.2
+ - Resolvido bug que fazia os players ficarem sem nome
+ - Adicionado gerador de nick com prefix sequencial
+ - Adicionado bypass para o servidor jogar.omegamc.net
+ - Adicionado mais opções no Protetor
+ - Particique do nosso grupo no discord: https://dc-proxybot.hyplex.com.br/discord
+
+Versão 2.5.1
+ - Adicionado o comando '$protetor'
+ - Adicionado a função de proteger e seguir jogador(es)
+ - Adicionado função para movimentar bot(s) selecionado(s)
+ - Corrigido alguns erros internos
+ - Particique do nosso grupo no discord: https://discord.gg/u2CVejg
+ - Adicionado opção para gerar senha aleatoria, Definir Prefixo -&gt; Senhas aleatórias
+ - Adicionado função para movimentar todos os bots no viewer (tecla F8)
+ - Agora o cursor do mouse não é mais visivel no viewer
+ - Adicionado função para selecionar todas as proxies de um tipo especifico na lista de proxies
+
+Versão 2.5.0
+ - Adicionado multi seleção na lista de bots (usando a tecla Ctrl)
+ - Bug que fazia o bot não entrar em alguns servidores 1.8
+ - Opção de timeout no proxy checker
+ - Resolvido bugs no miner
+ - Removido gerador de proxies
+ - Bypass para o servidor mc.playdreamcraft.com.br
+
+Versão 2.4.7
+ - Bypass para o servidor jogar.mcnextup.com
+
+Versão 2.4.6
+ - Bug com a rotação do bot
+
+Versão 2.4.5
+ - Adicionado filtro de países no proxy checker
+ - Corrigido o modo login no proxy checker
+ - Mudanças na lista de usuários
+ - Adicionado replace '@senha' na configuração de registro e login
+ - Bug que fazia o bot ser kick por fly
+ - Travamento ao usar o comando '$portal **' em vários bots
+ - Adicionado botão de status no box do IP do servidor
+ - Bypass para o servidor adrserver.com.br
+
+Versão 2.4.3
+ - Adicionado macros
+
+Versão 2.4.2
+ - Corrigido bug que fazia o bot crashar ao ser kick por algum erro
+ - Adicionado 'gerador' de proxies
+ - Resolvido bug do spammer parar sozinho
+
+Versão 2.4.0
+ - Corrigido bug do botão de visualizar e remover
+ - Argumento 'botão' no comando $invclick
+ - Adicionado o comando '$captcha' (use '$help captcha' para saber mais)
+ - Adicionado o comando '$usebow'
+ - Resolvido bug com inventários na versão 1.5.2
+ - Modificado a form de proxies
+
+Versão 2.3.2
+ - Adicionado gerador de nick com prefixo
+ - Adicionado comando '$herbalismo'
+ - Agora a opção de remover funciona em 'Todos' na lista de bots
+ - Resolvido problema que fazia o proxy checker travar ao adicionar muitas proxies
+
+Versão 2.3.1
+ - Argumento 'duração' no comando '$move'
+ - Adicionado comando '$antiafk'
+ - Adicionado comando '$placeblock'
+ - Readicionado auto updater
+ - Adicionado checador de contas banidas
+ - Adicionado área para sugestões
+
+Versão 2.3
+ - Adicionado opção para mudar a velocidade do fly no viewer
+ - Mudanças internas
+ - Adicionado versão 1.9
+ - Adicionado versão 1.5.2
+ - Versão 1.12.1 removida temporariamente
+ - Adicionado bypass para o WorldCraft - '$worldcraftbypass'
+
+Versão 2.2.8
+ - Novo 'sobre'
+ - Adicionado opção de AutoTool no minerador
+ - Adicionado opção de enviar multiplos pings para o servidor
+ - Corrigido RANKING
+ - Adicionado área para reportar bugs
+
+Versão 2.2.6
+ - Minerador agora funciona com AntiCheat
+ - Adicionado possibilidade de excluir slots no comando $dropall
+
+Versão 2.2.5
+ - Minerador (comando: $miner, configurações: Opções-&gt;Minerador)
+ - Dropar item com a tecla 'Q' no viewer
+ - Resolvido bug que fazia o bot usar 100% do CPU ao cair do servidor
+ - Resolvido bug com proxies HTTP no ProxyChecker
+
+Versão 2.2.2:
+ - Adicionado botão para conectar bots desconectados
+ - Checagem de proxy mais rápida
+ - Configurar comando de login no servidor
+ - Configurar comando de registro no servidor
+ - Adicionado opção para registrar o bot com email no servidor
+
+Versão 2.1:
+ - Novo nome: AdvancedBot
+ - Adicionado killaura (tecla R) no viewer
+
+Versão 1.9:
+ - Removido 'Gerador de nicks'
+ - Removido 'Trocar skins'
+ - Adicionado opção para atacar o player mais próximo no comando '$useentity'
+ 
+Versão 1.7
+ - Poder atacar algum player com o viewer
+ - Adicionado o comando $help
+ - Opção para o viewer renderizar o texto das placas
+ - Opção de autoreconnect
+ - TAB no textbox de enviar mensagem
+ - Bypass para o SkySurvival (23/12/17) $skysurvivalbypass
+ - Corrigido Spammer
+ - Adicionado testador de contas (Mojang)
+
+Versão 1.6.9
+ - Comando $dropall - dropa todos os itens do bot
+ - Comando $clickblock {X} {Y} {Z} {1 = botão direito, 2 = botão esquerdo}
+ - Possibilidade de enviar multiplas mensagens com o Spammer
+ - Adicionado suporte para contas originais (mojang) {email:senha}</value>
+  </data>
+</root>

@@ -1,0 +1,287 @@
+[
+    {
+        "name": "arena",
+        "positions": [
+            {
+                "x": 3000,
+                "y": 34,
+                "z": 2972
+            }
+        ]
+    },
+    {
+        "name": "bedwars",
+        "positions": [
+            {
+                "x": 83000,
+                "y": 81,
+                "z": 83007
+            }
+        ]
+    },
+    {
+        "name": "blockparty",
+        "positions": [
+            {
+                "x": 34962,
+                "y": 2,
+                "z": 35000
+            }
+        ]
+    },
+    {
+        "name": "buildbattle-d",
+        "positions": [
+            {
+                "x": 58973,
+                "y": 81,
+                "z": 58996
+            }
+        ]
+    },
+    {
+        "name": "buildbattle",
+        "positions": [
+            {
+                "x": 59000,
+                "y": 80,
+                "z": 59011
+            }
+        ]
+    },
+    {
+        "name": "campominado",
+        "positions": [
+            {
+                "x": 17000,
+                "y": 4,
+                "z": 17021
+            }
+        ]
+    },
+    {
+        "name": "capture",
+        "positions": [
+            {
+                "x": 44999,
+                "y": 42,
+                "z": 44973
+            }
+        ]
+    },
+    {
+        "name": "contronto",
+        "positions": [
+            {
+                "x": 29000,
+                "y": 121,
+                "z": 28983
+            }
+        ]
+    },
+    {
+        "name": "detetive",
+        "positions": [
+            {
+                "x": 30999,
+                "y": 8,
+                "z": 30955
+            },
+            {
+                "x": 30997,
+                "y": 8,
+                "z": 30957
+            },
+            {
+                "x": 30999,
+                "y": 8,
+                "z": 30959
+            },
+            {
+                "x": 31001,
+                "y": 8,
+                "z": 30957
+            }
+        ]
+    },
+    {
+        "name": "dragonscape",
+        "positions": [
+            {
+                "x": 41000,
+                "y": 37,
+                "z": 41010
+            }
+        ]
+    },
+    {
+        "name": "eggwars",
+        "positions": [
+            {
+                "x": 61003,
+                "y": 71,
+                "z": 61010
+            }
+        ]
+    },
+    {
+        "name": "escondeesconde",
+        "positions": [
+            {
+                "x": 24995,
+                "y": 4,
+                "z": 24992
+            }
+        ]
+    },
+    {
+        "name": "frog",
+        "positions": [
+            {
+                "x": 9000,
+                "y": 39,
+                "z": 9018
+            }
+        ]
+    },
+    {
+        "name": "hungergames",
+        "positions": [
+            {
+                "x": 1000,
+                "y": 7,
+                "z": 985
+            }
+        ]
+    },
+    {
+        "name": "megaskywars",
+        "positions": [
+            {
+                "x": 33007,
+                "y": 58,
+                "z": 32978
+            }
+        ]
+    },
+    {
+        "name": "skywars",
+        "positions": [
+            {
+                "x": 32986,
+                "y": 58,
+                "z": 32999
+            }
+        ]
+    },
+    {
+        "name": "skywars-d",
+        "positions": [
+            {
+                "x": 33028,
+                "y": 58,
+                "z": 32999
+            }
+        ]
+    },
+    {
+        "name": "paintball",
+        "positions": [
+            {
+                "x": 37011,
+                "y": 6,
+                "z": 36996
+            }
+        ]
+    },
+    {
+        "name": "smashmobs",
+        "positions": [
+            {
+                "x": 69000,
+                "y": 65,
+                "z": 68985
+            }
+        ]
+    },
+    {
+        "name": "speedbuilders",
+        "positions": [
+            {
+                "x": 67000,
+                "y": 65,
+                "z": 66985
+            }
+        ]
+    },
+    {
+        "name": "speedbuilders-d",
+        "positions": [
+            {
+                "x": 67000,
+                "y": 65,
+                "z": 67014
+            }
+        ]
+    },
+    {
+        "name": "vampirez",
+        "positions": [
+            {
+                "x": 51020,
+                "y": 7,
+                "z": 51004
+            }
+        ]
+    },
+    {
+        "name": "woolwars",
+        "positions": [
+            {
+                "x": 82000,
+                "y": 76,
+                "z": 82027
+            }
+        ]
+    },
+    {
+        "name": "tribal",
+        "positions": [
+            {
+                "x": 54991,
+                "y": 6,
+                "z": 54989
+            }
+        ]
+    },
+    {
+        "name": "murders",
+        "positions": [
+            {
+                "x": 83979,
+                "y": 82,
+                "z": 84000
+            }
+        ]
+    },
+    {
+        "name": "confronto",
+        "positions": [
+            {
+                "x": 28999,
+                "y": 121,
+                "z": 28983
+            }
+        ]
+    },
+    {
+        "name": "batataquente",
+        "positions": [
+            {
+                "x": 6999,
+                "y": 4,
+                "z": 7008
+            }
+        ]
+    }
+]
